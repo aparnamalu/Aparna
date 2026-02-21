@@ -1,310 +1,396 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aparna | MERN Stack Developer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devanarayanan S B | Portfolio</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
+<style>
+:root{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --primary:#6366f1;
+    --accent:#22d3ee;
+    --text:#f1f5f9;
+    --gray:#94a3b8;
+}
+
+/* Light Theme */
+body.light-mode{
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --primary:#4f46e5;
+    --accent:#06b6d4;
+    --text:#0f172a;
+    --gray:#ffffff;
+    background:linear-gradient(135deg,#f1f5f9,#e2e8f0);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#0f172a,#111827);
+    color:var(--text);
+}
+
+/* Container */
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+}
+
+/* Header */
+header{
+    background:rgba(15,23,42,0.7);
+    backdrop-filter:blur(12px);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1.3rem 0;
+}
+
+.logo{
+    font-weight:700;
+    font-size:1.4rem;
+    background:linear-gradient(90deg,var(--primary),var(--accent));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:2rem;
+}
+
+nav a{
+    text-decoration:none;
+    color:var(--gray);
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:var(--accent);
+}
+
+/* Theme Button */
+.theme-btn{
+    background:none;
+    border:none;
+    font-size:1.3rem;
+    cursor:pointer;
+    color:var(--accent);
+    transition:0.3s;
+}
+
+.theme-btn:hover{
+    transform:scale(1.2);
+}
+
+/* Hero */
+.hero{
+    text-align:center;
+    padding:7rem 1rem 6rem;
+}
+
+.hero h1{
+    font-size:3rem;
+    margin-bottom:1rem;
+    background:linear-gradient(90deg,var(--primary),var(--accent));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    color:var(--gray);
+    margin-bottom:2.5rem;
+}
+
+/* Button */
+.btn{
+    display:inline-block;
+    padding:0.9rem 2.2rem;
+    border-radius:50px;
+    background:linear-gradient(90deg,var(--primary),var(--accent));
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.4s;
+    box-shadow:0 0 15px rgba(99,102,241,0.6);
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 0 25px rgba(34,211,238,0.8);
+}
+
+/* Sections */
+section{
+    padding:6rem 0;
+}
+
+section h2{
+    text-align:center;
+    font-size:2.2rem;
+    margin-bottom:3rem;
+}
+
+/* About */
+.about-content{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:3rem;
+    flex-wrap:wrap;
+}
+
+.profile-img{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid var(--primary);
+    box-shadow:0 0 25px rgba(99,102,241,0.6);
+    transition:0.4s;
+}
+
+.profile-img:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 35px rgba(34,211,238,0.9);
+}
+
+.about-content p{
+    max-width:500px;
+    color:var(--gray);
+    line-height:1.8;
+}
+
+/* Projects */
+.projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:2rem;
+}
+
+.card{
+    background:var(--card);
+    padding:2rem;
+    border-radius:20px;
+    transition:0.4s;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 25px rgba(99,102,241,0.4);
+}
+
+.card h3{
+    margin-bottom:1rem;
+    color:var(--accent);
+}
+
+.card p{
+    color:var(--gray);
+    font-size:0.95rem;
+}
+
+/* Contact */
+form{
+    max-width:600px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:1.2rem;
+}
+
+input, textarea{
+    padding:1rem;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.08);
+    background:var(--card);
+    color:var(--text);
+    font-family:inherit;
+    transition:0.3s;
+}
+
+input:focus, textarea:focus{
+    outline:none;
+    border-color:var(--accent);
+    box-shadow:0 0 10px rgba(34,211,238,0.5);
+}
+
+textarea{
+    resize:none;
+    height:130px;
+}
+
+button{
+    border:none;
+    cursor:pointer;
+}
+
+/* Footer */
+footer{
+    text-align:center;
+    padding:2rem 0;
+    color:var(--gray);
+    font-size:0.9rem;
+    border-top:1px solid rgba(255,255,255,0.05);
+}
+
+/* Responsive */
+@media(max-width:768px){
+    nav ul{
+        gap:1rem;
+        font-size:0.9rem;
     }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f8f9fc;
-      color: #333;
-      line-height: 1.6;
+    .hero h1{
+        font-size:2.3rem;
     }
 
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: auto;
+    .about-content{
+        text-align:center;
     }
-
-    section {
-      padding: 80px 0;
-    }
-
-    h1, h2, h3 {
-      font-weight: 600;
-      color: #222;
-    }
-
-    /* Header */
-    header {
-      background: white;
-      padding: 20px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: 600;
-      color: #4e73df;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: #4e73df;
-    }
-
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding-top: 100px;
-    }
-
-    .hero h1 {
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      color: #666;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      background: #4e73df;
-      color: white;
-      border-radius: 30px;
-      text-decoration: none;
-      transition: 0.3s;
-      font-weight: 500;
-    }
-
-    .btn:hover {
-      background: #2e59d9;
-    }
-
-    /* About Section */
-    .about-content {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .about-content img {
-      width: 200px;
-      border-radius: 50%;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-
-    .about-content p {
-      max-width: 500px;
-      color: #555;
-    }
-
-    /* Projects Section */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-    }
-
-    .card h3 {
-      margin-bottom: 15px;
-      color: #4e73df;
-    }
-
-    .card p {
-      color: #666;
-      font-size: 14px;
-    }
-
-    /* Contact Section */
-    form {
-      max-width: 500px;
-      margin: 40px auto 0;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    input, textarea {
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      font-family: inherit;
-      font-size: 14px;
-      resize: none;
-    }
-
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: #4e73df;
-    }
-
-    button {
-      padding: 12px;
-      border: none;
-      background: #4e73df;
-      color: white;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #2e59d9;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px 0;
-      background: white;
-      margin-top: 40px;
-      font-size: 14px;
-      color: #777;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 30px;
-      }
-
-      .nav-links {
-        gap: 15px;
-      }
-    }
-
-  </style>
+}
+</style>
 </head>
+
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <nav>
-        <div class="logo">Aparna</div>
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<header>
+<div class="container">
+<nav>
+<div class="logo">Devanarayanan S B</div>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<button id="themeToggle" class="theme-btn">🌙</button>
+</nav>
+</div>
+</header>
 
-  <!-- Hero -->
-  <section class="hero" id="home">
-    <div class="container">
-      <h1>Hello, I'm Aparna 👋</h1>
-      <p>MERN Stack Developer building modern, responsive and scalable web applications.</p>
-      <a href="#projects" class="btn">View My Work</a>
-    </div>
-  </section>
+<section class="hero" id="home">
+<div class="container">
+<h1>Creative Digital Professional</h1>
+<p>
+Video Editor • Digital Marketing Content Creator • Flutter Developer.
+I craft engaging visual stories and build powerful cross-platform applications.
+</p>
+<a href="#projects" class="btn">View My Work</a>
+</div>
+</section>
 
-  <!-- About -->
-  <section id="about">
-    <div class="container">
-      <h2 style="text-align:center;">About Me</h2>
-      <div class="about-content">
-        <img src="https://via.placeholder.com/200" alt="Profile Image">
-        <p>
-          I'm a passionate MERN Stack Developer specializing in building full-stack
-          web applications using MongoDB, Express.js, React, and Node.js.
-          I love creating clean, efficient, and user-friendly digital experiences.
-          Constantly learning and exploring new technologies to improve my craft.
-        </p>
-      </div>
-    </div>
-  </section>
+<section id="about">
+<div class="container">
+<h2>About Me</h2>
+<div class="about-content">
+<img src="image/Kratos.jfif" alt="Devanarayanan S B" class="profile-img">
+<p>
+I combine creativity and technology to deliver impactful digital experiences.
+From cinematic video edits to data-driven marketing strategies and modern
+Flutter applications, my work focuses on quality, performance, and innovation.
+</p>
+</div>
+</div>
+</section>
 
-  <!-- Projects -->
-  <section id="projects">
-    <div class="container">
-      <h2 style="text-align:center;">Projects</h2>
-      <div class="projects-grid">
-        
-        <div class="card">
-          <h3>E-Commerce App</h3>
-          <p>Full-stack e-commerce platform with authentication, cart functionality and payment integration.</p>
-        </div>
+<section id="projects">
+<div class="container">
+<h2>Projects</h2>
+<div class="projects-grid">
 
-        <div class="card">
-          <h3>Task Manager</h3>
-          <p>CRUD task management application with user login and real-time updates using MERN stack.</p>
-        </div>
+<div class="card">
+<h3>Creative Video Campaign</h3>
+<p>High-impact promotional video series designed for brand growth and engagement.</p>
+</div>
 
-        <div class="card">
-          <h3>Portfolio Website</h3>
-          <p>Personal responsive portfolio showcasing projects, skills and contact functionality.</p>
-        </div>
+<div class="card">
+<h3>Digital Marketing Strategy</h3>
+<p>Analytics-focused campaign development increasing audience reach and ROI.</p>
+</div>
 
-      </div>
-    </div>
-  </section>
+<div class="card">
+<h3>Flutter Mobile Application</h3>
+<p>Responsive cross-platform mobile app with smooth UI and scalable architecture.</p>
+</div>
 
-  <!-- Contact -->
-  <section id="contact">
-    <div class="container">
-      <h2 style="text-align:center;">Contact Me</h2>
-      <form>
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-  </section>
+</div>
+</div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    © 2026 Aparna | MERN Stack Developer
-  </footer>
+<section id="contact">
+<div class="container">
+<h2>Contact Me</h2>
+<form>
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea placeholder="Your Message" required></textarea>
+<button class="btn">Send Message</button>
+</form>
+</div>
+</section>
+
+<footer>
+© 2026 Devanarayanan S B. All rights reserved.
+</footer>
+
+<script>
+const toggleBtn = document.getElementById("themeToggle");
+const body = document.body;
+
+// Detect saved theme
+const savedTheme = localStorage.getItem("theme");
+
+if(savedTheme){
+    if(savedTheme === "light"){
+        body.classList.add("light-mode");
+        toggleBtn.textContent = "☀︎";
+    }
+}else{
+    // Auto detect system preference
+    if(window.matchMedia("(prefers-color-scheme: light)").matches){
+        body.classList.add("light-mode");
+        toggleBtn.textContent = "☀︎";
+    }
+}
+
+toggleBtn.addEventListener("click", () => {
+    body.classList.toggle("light-mode");
+
+    if(body.classList.contains("light-mode")){
+        toggleBtn.textContent = "☀︎";
+        localStorage.setItem("theme","light");
+    }else{
+        toggleBtn.textContent = "🌙";
+        localStorage.setItem("theme","dark");
+    }
+});
+</script>
 
 </body>
 </html>
